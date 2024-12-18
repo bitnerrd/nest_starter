@@ -1,4 +1,9 @@
-import { ClassSerializerInterceptor, Logger, ValidationPipe, VersioningType } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  Logger,
+  ValidationPipe,
+  VersioningType,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -7,10 +12,7 @@ import { NestExpressApplication } from '@nestjs/platform-express/interfaces/nest
 import { validationOptions } from './utils/validators/validation-options';
 import { ResponseTransformerInterceptor } from './interceptors/response-transformer.interceptor';
 import { HttpExceptionFilter } from './exception-filter/http-exception.filter';
-import { ToLowerCasePipe } from './interceptors/toLowerCase.pipe';
-import * as session from 'express-session';
 import { join } from 'path';
-import { IgnoreDoubleForwardSlashInReqPath } from './interceptors/ignore-double-forward-slash.middleware';
 
 async function bootstrap() {
   const app: NestExpressApplication = await NestFactory.create(AppModule, {
@@ -29,11 +31,7 @@ async function bootstrap() {
     type: VersioningType.URI,
   });
 
-  app.use(IgnoreDoubleForwardSlashInReqPath);
-
   app.useGlobalPipes(new ValidationPipe(validationOptions));
-
-  app.useGlobalPipes(new ToLowerCasePipe());
 
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
@@ -61,12 +59,10 @@ async function bootstrap() {
     secret: 'my-secret',
     resave: false,
     saveUninitialized: false,
-  }
+  };
 
   app.useStaticAssets(join(__dirname, '..', 'files'));
   app.useStaticAssets(join(__dirname, '..', 'logo'), { prefix: '/logo/' });
-
-  app.use(session(sessionOptions),);
 
   const port = configService.get('app.port');
   await app.listen(port, () => {
