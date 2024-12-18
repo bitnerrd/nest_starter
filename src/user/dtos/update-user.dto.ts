@@ -7,47 +7,20 @@ import {
   Length,
   Matches,
 } from 'class-validator';
-import { ProfessionEnum, RoleEnum } from 'src/utils/enums/enums';
+import { RoleEnum } from 'src/utils/enums/enums';
 
 export class UpdateUserDto {
-  @ApiProperty({ example: '+923228064081' })
+  @ApiProperty({ example: '+923117765261' })
   @IsOptional()
   phoneNumber: string;
 
-  @ApiProperty({ example: 'John' })
+  @ApiProperty({ example: 'Muhammad' })
   @IsOptional()
   firstName: string;
 
-  @ApiProperty({ example: 'Doe' })
+  @ApiProperty({ example: 'Anas' })
   @IsOptional()
   lastName: string;
-
-  @ApiProperty({ example: 'Lahore' })
-  @IsOptional()
-  city: string;
-
-  @ApiProperty({ example: 'Pakistan' })
-  @IsOptional()
-  country: string;
-
-  @ApiProperty({
-    example:
-      "I am passionate about using my voice to support and empower others. Whether it's fighting for social justice, promoting environmental sustainability, or advocating for the needs of marginalized communities, I am committed to using my platform to make a positive impact on the world.",
-  })
-  @IsOptional()
-  about: string;
-
-  @ApiProperty({ example: 'https//:user/linkedin.com' })
-  @IsOptional()
-  linkedinProfile: string;
-
-  @ApiProperty({ type: 'enum', enum: ProfessionEnum, example: 'founder' })
-  @IsOptional()
-  designation: ProfessionEnum;
-
-  @ApiProperty({ example: 'c522829b-dab3-4abb-b68b-9ebcc6f5094b' })
-  @IsOptional()
-  profilePic: string;
 
   @ApiPropertyOptional({
     required: false,
@@ -69,17 +42,10 @@ export class UpdateUserDto {
   fullName?: string;
 }
 
-export class CreateVisitorDto {
-  @ApiProperty({ example: '59.103.120.15' })
-  @IsNotEmpty()
-  userIp: string;
-}
-
 export class RoleDto {
   @ApiProperty({
     description: 'Select Role',
     enum: RoleEnum,
-    example: RoleEnum.sub_admin,
   })
   @IsEnum(RoleEnum)
   @IsString()

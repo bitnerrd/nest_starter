@@ -7,7 +7,6 @@ import {
   Length,
   Matches,
 } from 'class-validator';
-import { ProfessionEnum } from 'src/utils/enums/enums';
 
 export class SignUpDto {
   @ApiProperty({

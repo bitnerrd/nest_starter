@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { randomUUID } from 'crypto';
-import { UserEntity } from 'src/entities/user/user.entity';
-import { SecurityCodeTypeEnum } from 'src/utils/enums/enums';
 
 @Injectable()
 export class AuthHelper {
