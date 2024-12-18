@@ -9,7 +9,7 @@ import { TypeOrmConfigService } from './database/typeorm-config.service';
 import { EntitiesModule } from './entities/entities.module';
 import { AuthModule } from './auth/auth.module';
 import authConfig from './config/auth.config';
-import { UserModule } from './user/user.module';
+import { AccountModule as AccountModule } from './account/account.module';
 
 @Module({
   imports: [
@@ -24,7 +24,7 @@ import { UserModule } from './user/user.module';
     }),
     EntitiesModule,
     AuthModule,
-    UserModule,
+    AccountModule,
   ],
   controllers: [AppController],
   providers: [AppService],

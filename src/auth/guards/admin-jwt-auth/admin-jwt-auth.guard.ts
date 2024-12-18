@@ -3,14 +3,12 @@ import {
   HttpException,
   HttpStatus,
   Injectable,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AuthGuard } from '@nestjs/passport';
 import { ExtractJwt } from 'passport-jwt';
 import { MESSAGE_CONSTANTS } from 'src/utils/constants/messages-constants';
 import { RoleEnum } from 'src/utils/enums/enums';
-// import { AuthHelper } from 'src/auth/helpers/auth.helper';
 
 @Injectable()
 export class AdminJwtAuthGuard extends AuthGuard('jwt') {
@@ -38,7 +36,6 @@ export class AdminJwtAuthGuard extends AuthGuard('jwt') {
           HttpStatus.NOT_ACCEPTABLE,
         );
       }
-      // const isBlackListed = await this.authHelper.isTokenBlackListed(token);
       req.admin = payload.user;
       return payload && req.admin;
     } catch (e) {

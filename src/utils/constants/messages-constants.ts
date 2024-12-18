@@ -1,4 +1,3 @@
-
 export const MESSAGE_CONSTANTS = {
   userNotFound: 'User not found',
   verifyEmailFirst: 'Verify email first',
@@ -11,11 +10,12 @@ export const MESSAGE_CONSTANTS = {
   invalidAccount: 'Invalid account',
   emailAlreadyExist: 'Email already exist',
   resetPassLinkSentToYourEmail: 'A reset password link is sent to your email',
-  verificationEmailIsSentToYourEmail: 'Please verify your account. A verification email is sent to your email.',
+  accountCreated: 'Account Created Successfully.',
   passwordUpdatedSuccessfully: 'Password updated successfully.',
   invalidToken: 'Invalid token',
-  yourRequestHasBeenSent: 'Your request has been sent. You will hear from us soon.',
+  yourRequestHasBeenSent:
+    'Your request has been sent. You will hear from us soon.',
   recordNotFound: 'Record not found',
-  userInvited: "User has been invited",
-  alreadyExist: "Already exist"
+  userInvited: 'User has been invited',
+  alreadyExist: 'Already exist',
 };

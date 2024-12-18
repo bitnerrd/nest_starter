@@ -5,7 +5,7 @@ export class SimpleUser {
   firstName: string | null;
 
   @ApiProperty({ nullable: true })
-  lastName: string | null;  
+  lastName: string | null;
 
   @ApiProperty({ nullable: true })
   phoneNumber: string | null;
@@ -22,20 +22,12 @@ export class SimpleUser {
 
 export type TokenType = 'accessToken' | 'refreshToken';
 
-export interface IToken {
-  user: SimpleUser;
-  email: string | null;
-}
-
 export class RefreshToken {
   @ApiProperty()
   rid: string;
 }
 
-export class AccessToken implements IToken {
-  @ApiProperty({ type: () => SimpleUser })
-  user: SimpleUser;
-
+export class AccessToken {
   @ApiProperty()
   email: string | null;
 }

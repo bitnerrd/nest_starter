@@ -35,15 +35,8 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       }
       const payload = await this.jwtService.verify(token);
 
-      if (!payload.user.isActive) {
-        throw new HttpException(
-          MESSAGE_CONSTANTS.incorrectEmailOrPassword,
-          HttpStatus.NOT_ACCEPTABLE,
-        );
-      }
-
-      req.user = payload.user;
-      return payload && req.user;
+      req.user_id = payload.sub;
+      return payload && req;
     } catch (e) {
       throw new HttpException(e.message, HttpStatus.UNAUTHORIZED);
     }
