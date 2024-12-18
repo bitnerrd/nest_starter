@@ -1,4 +1,10 @@
-import { ExecutionContext, HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  ExecutionContext,
+  HttpException,
+  HttpStatus,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AuthGuard } from '@nestjs/passport';
 import { ExtractJwt } from 'passport-jwt';
@@ -22,22 +28,24 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
         throw new Error(MESSAGE_CONSTANTS.invalidToken);
       }
       if (!this.jwtService) {
-        throw new HttpException('jwt Service not found', HttpStatus.INTERNAL_SERVER_ERROR)
+        throw new HttpException(
+          'jwt Service not found',
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
       }
       const payload = await this.jwtService.verify(token);
-      // if (!payload.user.isEmailVerified) {
-      //   throw new HttpException(MESSAGE_CONSTANTS.verifyEmailFirst, HttpStatus.NOT_ACCEPTABLE)
-      // }
 
       if (!payload.user.isActive) {
-        throw new HttpException(MESSAGE_CONSTANTS.incorrectEmailOrPassword, HttpStatus.NOT_ACCEPTABLE)
+        throw new HttpException(
+          MESSAGE_CONSTANTS.incorrectEmailOrPassword,
+          HttpStatus.NOT_ACCEPTABLE,
+        );
       }
 
-      // const isBlackListed = await this.authHelper.isTokenBlackListed(token);
       req.user = payload.user;
       return payload && req.user;
     } catch (e) {
-      throw new HttpException(e.message, HttpStatus.UNAUTHORIZED)
+      throw new HttpException(e.message, HttpStatus.UNAUTHORIZED);
     }
   }
 }

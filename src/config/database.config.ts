@@ -33,13 +33,8 @@ export default registerAs('database', () => {
     rejectUnauthorized: Joi.boolean(),
   });
 
-  // Validates our values using the schema.
-  // Passing a flag to tell Joi to not stop validation on the
-  // first error, we want all the errors found.
   const { error } = schema.validate(values, { abortEarly: false });
 
-  // If the validation is invalid, "error" is assigned a
-  // ValidationError object providing more information.
   if (error) {
     throw new Error(
       `Validation failed - Is there an environment variable missing?
@@ -47,7 +42,5 @@ export default registerAs('database', () => {
     );
   }
 
-  // If the validation is valid, then the "error" will be
-  // undefined and this will return successfully.
   return values;
 });

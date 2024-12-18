@@ -54,14 +54,6 @@ export class AuthController {
     return await this.authService.login(loginDto);
   }
 
-  //   @Get('verify-email/:code')
-  //   @HttpCode(HttpStatus.OK)
-  //   @ApiOperation({ summary: 'Verify your email' })
-  //   @ApiParam({ name: 'code' })
-  //   async verifyUserEmail(@Param() code: string) {
-  //     return await this.authService.verifyEmail(code);
-  //   }
-
   @Get('verify-reset-password-code')
   async verifyResetPasswordCode(@Query('code') code: string) {
     return await this.authService.verifyResetPasswordCode(code);

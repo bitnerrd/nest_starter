@@ -7,7 +7,7 @@ export class AuthForgotPasswordDto {
     required: true,
     type: String,
     description: 'email',
-    example: "johndoe@example.com"
+    example: 'anas@example.com',
   })
   @Transform(({ value }) => value.toLowerCase().trim())
   @IsEmail()
