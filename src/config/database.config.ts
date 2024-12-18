@@ -2,7 +2,6 @@ import { registerAs } from '@nestjs/config';
 import * as Joi from 'joi';
 
 export default registerAs('database', () => {
-
   const values = {
     type: process.env.DATABASE_TYPE,
     host: process.env.DATABASE_HOST,
@@ -10,13 +9,14 @@ export default registerAs('database', () => {
     password: process.env.DATABASE_PASSWORD,
     name: process.env.DATABASE_NAME,
     username: process.env.DATABASE_USERNAME,
-    synchronize: process.env.DATABASE_SYNCHRONIZE.toString().toLowerCase() === 'true',
+    synchronize:
+      process.env.DATABASE_SYNCHRONIZE.toString().toLowerCase() === 'true',
     maxConnections: parseInt(process.env.DATABASE_MAX_CONNECTIONS, 10) || 100,
-    sslEnabled: process.env.DATABASE_SSL_ENABLED.toString().toLowerCase() === 'true',
-    rejectUnauthorized: process.env.DATABASE_REJECT_UNAUTHORIZED.toString().toLowerCase() === 'true',
-    ca: process.env.DATABASE_CA,
-    key: process.env.DATABASE_KEY,
-    cert: process.env.DATABASE_CERT,
+    sslEnabled:
+      process.env.DATABASE_SSL_ENABLED.toString().toLowerCase() === 'true',
+    rejectUnauthorized:
+      process.env.DATABASE_REJECT_UNAUTHORIZED.toString().toLowerCase() ===
+      'true',
   };
 
   // Joi validations
@@ -31,11 +31,7 @@ export default registerAs('database', () => {
     maxConnections: Joi.number().required(),
     sslEnabled: Joi.boolean(),
     rejectUnauthorized: Joi.boolean(),
-    ca: Joi.string().allow(null, ''),
-    key: Joi.string().allow(null, ''),
-    cert: Joi.string().allow(null, ''),
   });
-
 
   // Validates our values using the schema.
   // Passing a flag to tell Joi to not stop validation on the
