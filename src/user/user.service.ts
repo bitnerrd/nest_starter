@@ -5,7 +5,6 @@ import { UserEntity } from 'src/entities/user/user.entity';
 import { Repository } from 'typeorm';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { AuthHelper } from 'src/auth/helpers/auth.helper';
-import { MailService } from 'src/mail/mail.service';
 
 @Injectable()
 export class UserService extends TypeOrmCrudService<UserEntity> {
@@ -13,7 +12,6 @@ export class UserService extends TypeOrmCrudService<UserEntity> {
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
     private authHelper: AuthHelper,
-    private mailService: MailService,
   ) {
     super(userRepository);
   }
